@@ -195,16 +195,15 @@ Aşağıdakileri yapmak için profilListesi'ni kullanın:
 */
 
 function profilListesi(fenomen) {
-const yeni = [];
+  const yeni = [];
 
-for(let i=0;i<fenomen.length;i++){
-  yeni.push(fenomen[i].profile);
+  for (let i = 0; i < fenomen.length; i++) {
+    yeni.push(fenomen[i].profile);
+  }
+
   return yeni;
 }
 
-}
-
-console.log("profilListesi",profilListesi(fenomenler));
 
 
 /* Görev 5:
@@ -217,16 +216,14 @@ Aşağıdakileri yapmak için fenomenSil'i kullanın:
 
 ÖRNEK: fenomenSil işlevi fenomenler dizisi ve 0 indeks sayısı ile çağrılırsa, veri kümemizden 'Instagram' kaldırılmış olarak döndürür. */
 
-function fenomenSil(fenomen,index) {
-  const dizi =[];
-
-  for(let i=0;i<fenomen.length;i++){
-    dizi.splice(index,1);
-    return dizi;
+function fenomenSil(fenomen, indeks) {
+  if (indeks >= 0 && indeks < fenomen.length) {
+    fenomen.splice(indeks, 1);
   }
+
+  return fenomen;
 }
 
-console.log("fenomenSil",fenomenSil(fenomenler,0));
 
 
 
@@ -296,9 +293,16 @@ Aşağıdakileri yapmak için fenomenGonderimSayisi'nı kullanın:
 ÖRNEK: fenomenGonderimSayisi(fenomenler, 'Will Smith') çağrıldığında "136" dönmelidir
 */
 
-function fenomenGonderimSayisi(/*kod*/){
-  /*kod*/
+function fenomenGonderimSayisi(fenomen, ad) {
+  for (let i = 0; i < fenomen.length; i++) {
+    if (fenomen[i].profile === ad) {
+      return fenomen[i].posts;
+    }
+  }
+
+  return undefined; 
 }
+
 
 
 
@@ -313,9 +317,20 @@ Not: Gönderi sayısı belli olmayan (NA) hesaba katmayın.
 Örnek: platformaGoreCokGonderiYapanFenomen(fenomenler, 'TikTok') çağrıldığında "charli damelio" dönmelidir
 */
 
-function platformaGoreCokGonderiYapanFenomen(/*kod*/){
-  /*kod*/
+function platformaGoreCokGonderiYapanFenomen(fenomen, platform) {
+  let enCokGonderiYapanAd = "";
+  let enCokGonderiSayisi = 0;
+
+  for (let i = 0; i < fenomen.length; i++) {
+    if (fenomen[i].platform === platform && fenomen[i].posts > enCokGonderiSayisi) {
+      enCokGonderiSayisi = fenomen[i].posts;
+      enCokGonderiYapanAd = fenomen[i].profile;
+    }
+  }
+
+  return enCokGonderiYapanAd;
 }
+
 
 
 
